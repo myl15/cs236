@@ -1,0 +1,7 @@
+Rules:
+	: :- * + -
+Queries:
+	()1asd232
+Schemes:
+	,.?
+	'Hello it''s me
