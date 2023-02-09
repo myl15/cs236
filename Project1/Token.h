@@ -25,8 +25,11 @@ class Token {
 			out << "(" << typeName(type) << "," << "\"" << value << "\"" <<  "," << line << ")";
 			return out.str();
 		}
-		string getValue() {
+		string getValue() const {
 			return value;
+		}
+		TokenType getType() const {
+			return type;
 		}
 		//This function returns the name of the Token
 		string typeName(TokenType type) const {

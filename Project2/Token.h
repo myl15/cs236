@@ -22,11 +22,14 @@ class Token {
 		//This function creates a string with token info
 		string toString() const {
 			stringstream out;
-			out << "(" << typeName(type) << "," << value << "," << line << ")";
+			out << "(" << typeName(type) << "," << "\"" << value << "\"" <<  "," << line << ")";
 			return out.str();
 		}
-		string getValue() {
+		string getValue() const {
 			return value;
+		}
+		TokenType getType() const {
+			return type;
 		}
 		//This function returns the name of the Token
 		string typeName(TokenType type) const {
@@ -66,7 +69,7 @@ class Token {
 				case 16:
 					return "COLON_DASH";
 				case 17:
-					return "EOFILE";
+					return "EOF";
 			}
 			return "UNDEFINED";
 		}
