@@ -1,6 +1,7 @@
 #include "Token.h"
 #include "Scanner.h"
 #include "Parser.h"
+#include "DatalogProgram.h"
 #include <vector>
 #include <fstream>
 #include <iostream>
@@ -25,7 +26,8 @@ int main (int argc, char* argv[]) {
 	string currValue;
 	int tokenCount = 0;
 	int line = 0;
-  vector<Token> tokens;
+ 	vector<Token> tokens;
+	DatalogProgram p;
 	while ( !input.eof() || input.eof() ) {
 		//cout << "\nSize:" << inputLine.size() << inputLine;
 		if (input.eof()) {
@@ -36,7 +38,7 @@ int main (int argc, char* argv[]) {
 			Token t = myScanner.scanToken();
 			std::cout << t.toString() << endl;
 			tokenCount++;
-      tokens.push_back(t);
+      		tokens.push_back(t);
 			std::cout << "Total Tokens = " << tokenCount << endl;
 			break;
 		}
@@ -86,7 +88,7 @@ int main (int argc, char* argv[]) {
 				//std::cout << "setvalue";
 				std::cout << t.toString() << endl;
 				tokenCount++;
-        tokens.push_back(t);
+        		tokens.push_back(t);
 				std::string::size_type i = inputLine.find(currValue);
 				if (i != std::string::npos) {
 					//std::cout << "Currvalue " << currValue << endl;
@@ -98,7 +100,7 @@ int main (int argc, char* argv[]) {
 	}
   std::cout << "Begin Parsing";
 	Parser p = Parser(tokens);
-  p.idList();
+  	p.idList();
 	/* std::cout << "\n\\Beginning SCANNING\\" << endl;
 	Scanner s = Scanner(" ,,");
 	Token t= s.scanToken();

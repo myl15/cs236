@@ -1,5 +1,6 @@
 #include <vector>
 #include "Token.h"
+#include "DatalogProgram.h"
 
 using namespace std;
 
@@ -11,13 +12,17 @@ class Parser {
         TokenType tokenType() const {
             return tokens.at(0).getType();
         }
+		void parse() {
+			DatalogProgram d(tokens);
+			d.parse();
+		}
         void advanceToken() {
             tokens.erase(tokens.begin());
         }
         void throwError() {
-            std::cout << "Failure!" << endl;
-			tokens.at(0).toString();
-			exit(EXIT_FAILURE);
+            std::cerr << "Failure!" << endl;
+			std::cerr<< tokens.at(0).toString();
+			exit(0);
         }
         void match(TokenType t) {
             std::cout << "match: " << t << endl;
