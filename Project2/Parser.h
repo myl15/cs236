@@ -15,10 +15,12 @@ class Parser {
             tokens.erase(tokens.begin());
         }
         void throwError() {
-            cout << "error" << endl;
+            std::cout << "Failure!" << endl;
+			tokens.at(0).toString();
+			exit(EXIT_FAILURE);
         }
         void match(TokenType t) {
-            cout << "match: " << t << endl;
+            std::cout << "match: " << t << endl;
             if (tokenType() == t) {
                 advanceToken();
             }
@@ -123,6 +125,6 @@ class Parser {
 			match(Q_MARK);
 		}
 		void queryList() {
-			if (tokenType() == COMMA)
+			if (tokenType() == COMMA) {}
 		}
 };
