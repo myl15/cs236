@@ -1,17 +1,21 @@
+#pragma once
 #include <vector>
-#include "Scanner.h"
-#include "Token.h"
 #include <string>
-#include "Rule.h"
-#include "Parser.h"
-#include "DatalogProgram.h"
 
-class Parameter {
+class parameter {
 	private:
 		string name;
 		bool isID;
 	public:
-		string toString() {
-			return "FALSE";
-		}
-}
+	parameter(string name, bool id) {
+		this->name = name;
+		this->isID = id;
+	}
+	string toString() {
+		return name;
+	}
+	bool getIsID () {
+		return isID;
+	}
+
+};

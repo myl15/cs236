@@ -1,28 +1,100 @@
+#pragma once
 #include <vector>
 #include <string>
-#include "Parser.h"
-#include "Token.h"
-#include "Parameter.h"
 
 class predicate {
     private:
-        parameter head;
-        vector<Parameter> parameters;
+        string name;
+        vector<parameter> parameters;
 	public:
-		string toString() {
+		predicate() {};
+		predicate(string name) {
+			this->name = name;
+		}
+		bool getIsID(int index) {
+			return parameters.at(index).getIsID();
+		}
+		void setSchemeParam(Token t) {
+			parameter param(t.getValue(), true);
+			parameters.push_back(param);
+		}
+		void setRuleParam(Token t) {
+			parameter param(t.getValue(), true);
+			//cout <<"\n\n" << t.getValue() << endl;
+			parameters.push_back(param);
+		}
+		void setFactParam(Token t) {
+			parameter param(t.getValue(), false);
+			parameters.push_back(param);
+		}
+		string getFactParam(int index) {
+			return parameters.at(index).toString();
+		}
+		int getParameterSize() {
+			return parameters.size();
+		}
+		
+		void setQueryParam(Token t) {
+			parameter param(t.getValue(), false);
+			parameters.push_back(param);
+		}
+		string toPremiseString() {
 			return name;
 		}
-		void isScheme(){
-			match(ID);
-            match(LEFT_PAREN);
-            match(ID);
-            idList();
-            match(RIGHT_PAREN);
+		string toParameterString() {
+			string answer = "(";
+			for (unsigned int i = 0; i < parameters.size(); i++) {
+				answer += parameters.at(i).toString();
+				if (i != parameters.size()-1) answer += ",";
+				else answer += ")";
+			}
+			return answer;
 		}
-		void isFact() {
-
+		string toPredicateString() {
+			string answer = "";
+			//cout << name;
+			answer += name;
+			answer += "(";
+			for (unsigned int i=0; i < parameters.size(); i++) {
+				answer += parameters.at(i).toString();
+				//cout << parameters.at(i).toString() << endl;
+				if (parameters.size() - i > 1) answer += ",";
+				if (parameters.size() - i == 1) answer += ")";
+			}
+			return answer;
 		}
-		void isQuery() {
-
+		string toString() {
+			string answer = "  ";
+			answer += name;
+			answer += "(";
+			for (unsigned int i=0; i < parameters.size(); i++) {
+				answer += parameters.at(i).toString();
+				if (parameters.size() - i > 1) answer += ",";
+				if (parameters.size() - i == 1) answer += ").";
+			}
+			return answer;
 		}
-}
+		string toQueryString() {
+			string answer = "  ";
+			answer += name;
+			answer += "(";
+			for (unsigned int i=0; i < parameters.size(); i++) {
+				answer += parameters.at(i).toString();
+				if (parameters.size() - i > 1) answer += ",";
+				if (parameters.size() - i == 1) answer += ")?";
+			}
+			return answer;
+		}
+		string toRuleString() {
+			string answer = "  ";
+			answer += name;
+			answer += "(";
+			for (unsigned int i=0; i < parameters.size(); i++) {
+				answer += parameters.at(i).toString();
+				if (parameters.size() - i > 1) answer += ",";
+				if (parameters.size() - i == 1) answer += ")";
+			}
+			return answer;
+		}
+};
+		

@@ -27,7 +27,6 @@ int main (int argc, char* argv[]) {
 	int tokenCount = 0;
 	int line = 0;
  	vector<Token> tokens;
-	DatalogProgram p;
 	while ( !input.eof() || input.eof() ) {
 		//cout << "\nSize:" << inputLine.size() << inputLine;
 		if (input.eof()) {
@@ -100,7 +99,7 @@ int main (int argc, char* argv[]) {
 	}
   std::cout << "Begin Parsing";
 	Parser p = Parser(tokens);
-  	p.idList();
+  	p.parse();
 	/* std::cout << "\n\\Beginning SCANNING\\" << endl;
 	Scanner s = Scanner(" ,,");
 	Token t= s.scanToken();
@@ -206,7 +205,7 @@ void CommentAndStringCheck (string& inputLine, ifstream& input, int& line, int& 
 					myScanner.setLine(stringLine);
 					Token t = myScanner.scanToken();
 					tokenCount++;
-          tokens.push_back(t);
+          			tokens.push_back(t);
 					currValue = t.getValue();
 					std::cout << t.toString() << endl;
 					foundString = true;
@@ -233,7 +232,7 @@ void CommentAndStringCheck (string& inputLine, ifstream& input, int& line, int& 
 				myScanner.setLine(stringLine);
 				Token t = myScanner.scanToken();
 				tokenCount++;
-        tokens.push_back(t);
+        		tokens.push_back(t);
 				currValue = t.getValue();
 				std::cout << t.toString() << endl;
 				foundString = true;
@@ -263,7 +262,7 @@ void CommentAndStringCheck (string& inputLine, ifstream& input, int& line, int& 
 				myScanner.setLine(stringLine);
 				Token t = myScanner.scanToken();
 				tokenCount++;
-        tokens.push_back(t);
+        		tokens.push_back(t);
 				currValue = t.getValue();
 				std::cout << t.toString() << endl;
 				foundString = true;
@@ -323,7 +322,7 @@ void CommentAndStringCheck (string& inputLine, ifstream& input, int& line, int& 
 					myScanner.setLine(line);
 					Token t = myScanner.scanToken();
 					tokenCount++;
-          tokens.push_back(t);
+          			tokens.push_back(t);
 					currValue = t.getValue();
 					std::cout << t.toString() << endl;
 					size_t i = inputLine.find("#|"+currValue);
@@ -340,7 +339,7 @@ void CommentAndStringCheck (string& inputLine, ifstream& input, int& line, int& 
 					myScanner.setLine(line);
 					Token t = myScanner.scanToken();
 					tokenCount++;
-          tokens.push_back(t);
+          			tokens.push_back(t);
 					currValue = t.getValue();
 					std::cout << t.toString() << endl;
 					foundComment = true;
@@ -361,7 +360,7 @@ void CommentAndStringCheck (string& inputLine, ifstream& input, int& line, int& 
 			myScanner.setLine(line);
 			Token t = myScanner.scanToken();
 			tokenCount++;
-      tokens.push_back(t);
+      		tokens.push_back(t);
 			currValue = t.getValue();
 			std::cout << t.toString() << endl;
 
