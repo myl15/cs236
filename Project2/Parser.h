@@ -23,8 +23,9 @@ class Parser {
 			realParse();
 			}
 			catch (Token t) {
-				std::cerr << "Failure!" << endl;
-				std::cerr<< t.toString();
+				std::cout << "Failure!" << endl;
+				std::cout << "  " << t.toString() << endl;
+				exit(EXIT_SUCCESS);
 			}
 		}
 		void realParse() {
@@ -67,6 +68,13 @@ class Parser {
 			else {
 				throw tokens.at(0);
 			}
+			if (!tokens.empty()) {
+				//cout << "--" <<tokens.at(0).getType() << tokens.size();
+				if (tokenType() == EOFILE) {
+					//lambda
+				}
+				else throw tokens.at(0);
+			}
 			//cout << "Creating datalog";
 			DatalogProgram dp(parsedTokens);
 			//cout << "tostring" << endl;
@@ -77,8 +85,8 @@ class Parser {
             tokens.erase(tokens.begin());
         }
         void throwError() {
-            std::cerr << "Failure!" << endl;
-			std::cerr<< tokens.at(0).toString();
+            // std::cerr << "Failure!" << endl;
+			// std::cerr<< tokens.at(0).toString();
 			throw tokens.at(0);
         }
         void match(TokenType t) {
@@ -114,8 +122,7 @@ class Parser {
 			match(PERIOD);
 		}
 		void factList() {
-			if (tokenType() == ID && tokens.at(1).getType() == LEFT_PAREN 
-				&& tokens.at(2).getType() == STRING) {
+			if (tokenType() == ID && tokens.at(1).getType() == LEFT_PAREN) {
 				fact();
 				factList();
 			}

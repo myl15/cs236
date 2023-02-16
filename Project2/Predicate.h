@@ -74,6 +74,17 @@ class predicate {
 			}
 			return answer;
 		}
+		string toSchemesString() {
+			string answer = "  ";
+			answer += name;
+			answer += "(";
+			for (unsigned int i=0; i < parameters.size(); i++) {
+				answer += parameters.at(i).toString();
+				if (parameters.size() - i > 1) answer += ",";
+				if (parameters.size() - i == 1) answer += ")";
+			}
+			return answer;
+		}
 		string toQueryString() {
 			string answer = "  ";
 			answer += name;

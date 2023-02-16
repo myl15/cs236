@@ -30,6 +30,7 @@ class DatalogProgram {
 				predicate pred(tokens.at(index).getValue());
 				index++; //Get rid of name
 				index++; //Get rid of parentheses
+				if (TokenType() == RIGHT_PAREN) throw tokens.at(0);
 				while(tokens.at(index).getType() != RIGHT_PAREN) {
 					pred.setSchemeParam(tokens.at(index));
 					index++; //Get rid of parameter
@@ -49,6 +50,7 @@ class DatalogProgram {
 				predicate pred(tokens.at(index).getValue());
 				index++; //Get rid of name
 				index++; //Get rid of parentheses
+				if (TokenType() == RIGHT_PAREN) throw tokens.at(0);
 				while (tokens.at(index).getType() != PERIOD) {
 					
 					pred.setFactParam(tokens.at(index));
@@ -70,8 +72,9 @@ class DatalogProgram {
 				predicate headPredicate(tokens.at(index).getValue()); 
 				index++; //Get rid of name
 				index++; //Get rid of parentheses
+				if (TokenType() == RIGHT_PAREN) throw tokens.at(0);
 				while(tokens.at(index).getType() != RIGHT_PAREN) {
-					cout << tokens.at(index).getValue() << endl;
+					//cout << tokens.at(index).getValue() << endl;
 					headPredicate.setRuleParam(tokens.at(index));
 					index++; //Get rid of parameter
 					if (tokens.at(index).getType() == COMMA) index++; //Get rid of comma/left-paren
@@ -86,7 +89,7 @@ class DatalogProgram {
 					if (tokens.at(index).getType() == COMMA) index++;
 					rul.setRuleParam(tokens, index);
 					//index++; //Get rid of parameter
-					cout << "ASASFA" << tokens.at(index).getValue() << "2" << endl;
+					//cout << "ASASFA" << tokens.at(index).getValue() << "2" << endl;
 					if (tokens.at(index).getType() == COMMA) index++; //Get rid of comma/left-paren
 					
 					if (tokens.at(index).getType() == COLON_DASH) index++;
@@ -108,6 +111,7 @@ class DatalogProgram {
 				predicate pred(tokens.at(index).getValue());
 				index++; //Get rid of name
 				index++; //Get rid of parentheses
+				if (TokenType() == RIGHT_PAREN) throw tokens.at(0);
 				//cout << tokens.at(index).toString() << endl;
 				while (tokens.at(index).getType() != Q_MARK) {
 					//cout << tokens.at(index).toString() << endl;
@@ -120,29 +124,30 @@ class DatalogProgram {
 					
 				}
 				queries.push_back(pred);
+				index++; // Get rid of question mark
 			}
 			domains = createDomain(facts);
 		}
 		string toString() {
 			stringstream out;
 			out << "Success!" << endl;
-			out << "Schemes(" << schemes.size() << ") :" << endl;
+			out << "Schemes(" << schemes.size() << "):" << endl;
 			for (predicate curr : schemes) {
-				out << curr.toString() << endl;
+				out << curr.toSchemesString() << endl;
 			}
-			out << "Facts(" << facts.size() << ") :" << endl;
+			out << "Facts(" << facts.size() << "):" << endl;
 			for (predicate curr : facts) {
 				out << curr.toString() << endl;
 			}
-			out << "Rules(" << rules.size() << ") :" << endl;
+			out << "Rules(" << rules.size() << "):" << endl;
 			for (rule curr : rules) {
 				out << curr.toString() << endl;
 			}
-			out << "Queries(" << queries.size() << ") :" << endl;
+			out << "Queries(" << queries.size() << "):" << endl;
 			for (predicate curr : queries) {
 				out << curr.toQueryString() << endl;
 			}
-			out << "Domain(" << domains.size() << ") :" << endl;
+			out << "Domain(" << domains.size() << "):" << endl;
 			set<string>::iterator itr;
 			for (itr = domains.begin(); itr != domains.end(); itr++) {
 				out << "  " << *itr  << endl;

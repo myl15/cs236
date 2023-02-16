@@ -220,20 +220,22 @@ class Scanner {
 					}
 				}
 				else if (input.at(0) == '#') {
+					//cout << "IN SCANNER";
 					size_t found = input.find("ERROR_EOF");
 					if (found != string::npos) {
+						//cout << "DOING SOME ERASING";
 						input.erase(found,10);
 						string inputString = input;
 						//input.clear();
-						/* setTokenCount();
+						/*setTokenCount();
 						return Token(UNDEFINED, inputString, getLine()); */
 					}
 					//cout << "Making a comment in scanner.h" << endl;
 					string newComment = input;
 					input.clear();
 					//cout << input << endl;
-					/* setTokenCount();
-					return Token(COMMENT, newComment, getLine()); */
+					setTokenCount();
+					return Token(COMMENT, newComment, getLine()); 
 
 				}
 				else if (isalpha(input.at(0))) {
@@ -408,9 +410,11 @@ class Scanner {
 				}
 			}
 			//cout << "checkycheck";
-			string undefinedToken = input.substr(0,1);
-			input = input.substr(1);
-			setTokenCount();
-			return Token(UNDEFINED, undefinedToken, getLine());
+			
+				string undefinedToken = input.substr(0,1);
+				input = input.substr(1);
+				setTokenCount();
+				return Token(UNDEFINED, undefinedToken, getLine());
+			
 		}
 };

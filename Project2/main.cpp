@@ -35,10 +35,10 @@ int main (int argc, char* argv[]) {
 			Scanner myScanner(endOfFile, line);
 			myScanner.setLine(line);
 			Token t = myScanner.scanToken();
-			std::cout << t.toString() << endl;
+			//std::cout << t.toString() << endl;
 			tokenCount++;
       		tokens.push_back(t);
-			std::cout << "Total Tokens = " << tokenCount << endl;
+			//std::cout << "Total Tokens = " << tokenCount << endl;
 			break;
 		}
 		if(inputLine.empty()) {
@@ -85,7 +85,7 @@ int main (int argc, char* argv[]) {
 				//std::cout << "made token";
 				currValue = t.getValue();
 				//std::cout << "setvalue";
-				std::cout << t.toString() << endl;
+				//std::cout << t.toString() << endl;
 				tokenCount++;
         		tokens.push_back(t);
 				std::string::size_type i = inputLine.find(currValue);
@@ -97,7 +97,7 @@ int main (int argc, char* argv[]) {
 			}
 		}
 	}
-  std::cout << "Begin Parsing";
+  	//std::cout << "Begin Parsing";
 	Parser p = Parser(tokens);
   	p.parse();
 	/* std::cout << "\n\\Beginning SCANNING\\" << endl;
@@ -141,7 +141,7 @@ void CommentAndStringCheck (string& inputLine, ifstream& input, int& line, int& 
 					tokenCount++;
           tokens.push_back(t);
 					currValue = t.getValue();
-					std::cout << t.toString() << endl;
+					//std::cout << t.toString() << endl;
 					foundString = true;
 					if(!inputLine.empty()) CommentAndStringCheck(inputLine, input,  line, tokenCount, tokens);
 					break;
@@ -173,9 +173,9 @@ void CommentAndStringCheck (string& inputLine, ifstream& input, int& line, int& 
 					myScanner.setLine(stringLine);
 					Token t = myScanner.scanToken();
 					tokenCount++;
-          tokens.push_back(t);
+          			tokens.push_back(t);
 					currValue = t.getValue();
-					std::cout << t.toString() << endl;
+					//std::cout << t.toString() << endl;
 					foundString = true;
 					size_t i = inputLine.find(currValue);
 					if (i != string::npos) {
@@ -207,7 +207,7 @@ void CommentAndStringCheck (string& inputLine, ifstream& input, int& line, int& 
 					tokenCount++;
           			tokens.push_back(t);
 					currValue = t.getValue();
-					std::cout << t.toString() << endl;
+					//std::cout << t.toString() << endl;
 					foundString = true;
 					size_t i = inputLine.find("\'"+currValue);
 					if (i != string::npos) {
@@ -234,7 +234,7 @@ void CommentAndStringCheck (string& inputLine, ifstream& input, int& line, int& 
 				tokenCount++;
         		tokens.push_back(t);
 				currValue = t.getValue();
-				std::cout << t.toString() << endl;
+				//std::cout << t.toString() << endl;
 				foundString = true;
 				size_t i = inputLine.find('\''+currValue);
 				if (i != string::npos) {
@@ -264,7 +264,7 @@ void CommentAndStringCheck (string& inputLine, ifstream& input, int& line, int& 
 				tokenCount++;
         		tokens.push_back(t);
 				currValue = t.getValue();
-				std::cout << t.toString() << endl;
+				//std::cout << t.toString() << endl;
 				foundString = true;
 				size_t i = inputLine.find("\'"+currValue);
 				if (i != string::npos) {
@@ -305,10 +305,13 @@ void CommentAndStringCheck (string& inputLine, ifstream& input, int& line, int& 
 	else if (inputLine.at(0) == '#' &&   inputLine.size() > 1) {
 		//std::cout << "in comment section";
 		size_t found = inputLine.find("#|");
+		//cout << "DIDNT FIND IT";
 		if (found != string::npos) {
 			//std::cout <<"FOUND #| " << endl;
+			//cout << inputLine;
 			string finalInput = inputLine.substr(0,found+2);
 			inputLine = inputLine.substr(found+2);
+			//cout << "Entering while loop" << endl;
 			while (!foundComment) {
 				string newInput;
 				getline(input, newInput);
@@ -321,10 +324,10 @@ void CommentAndStringCheck (string& inputLine, ifstream& input, int& line, int& 
 					Scanner myScanner(finalInput, line);
 					myScanner.setLine(line);
 					Token t = myScanner.scanToken();
-					tokenCount++;
-          			tokens.push_back(t);
+					//tokenCount++;
+          			//tokens.push_back(t);
 					currValue = t.getValue();
-					std::cout << t.toString() << endl;
+					//std::cout << t.toString() << endl;
 					size_t i = inputLine.find("#|"+currValue);
 					if (i != string::npos) {
 						inputLine.erase(i, currValue.length());
@@ -338,10 +341,10 @@ void CommentAndStringCheck (string& inputLine, ifstream& input, int& line, int& 
 					Scanner myScanner(finalInput, line);
 					myScanner.setLine(line);
 					Token t = myScanner.scanToken();
-					tokenCount++;
-          			tokens.push_back(t);
+					//tokenCount++;
+          			//tokens.push_back(t);
 					currValue = t.getValue();
-					std::cout << t.toString() << endl;
+					//std::cout << t.toString() << endl;
 					foundComment = true;
 					inputLine.clear();
 					size_t i = inputLine.find("#|"+currValue);
@@ -357,12 +360,15 @@ void CommentAndStringCheck (string& inputLine, ifstream& input, int& line, int& 
 			foundComment = true;
 			//std::cout << "FOUNDCOMMENT " << endl;
 			Scanner myScanner(inputLine, line);
+			//cout << "MADE SCANNER";
 			myScanner.setLine(line);
+			//cout << "SETLINE";
 			Token t = myScanner.scanToken();
-			tokenCount++;
-      		tokens.push_back(t);
+			//cout << "SCANNED TOKEN";
+			//tokenCount++;
+      		//tokens.push_back(t);
 			currValue = t.getValue();
-			std::cout << t.toString() << endl;
+			//std::cout << t.toString() << endl;
 
 			size_t i = inputLine.find(currValue);
 			if (i != string::npos) {

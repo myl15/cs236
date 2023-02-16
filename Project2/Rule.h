@@ -21,7 +21,7 @@ class rule {
 				answer += premises.at(i).toPremiseString();
 				answer += premises.at(i).toParameterString();
 				if (premises.size() - i == 1) answer += ".";
-				else answer += ", ";
+				else answer += ",";
 			}
 			return answer;
 		}
