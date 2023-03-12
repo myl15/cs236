@@ -11,6 +11,19 @@ class predicate {
 		predicate(string name) {
 			this->name = name;
 		}
+
+		string getName() {
+			return this->name;
+		}
+		
+		vector<string> getParameterNames() {
+			vector <string> result;
+			for (auto& parameter : parameters) {
+				result.push_back(parameter.toString());
+			}
+			return result;
+		}
+
 		bool getIsID(int index) {
 			return parameters.at(index).getIsID();
 		}

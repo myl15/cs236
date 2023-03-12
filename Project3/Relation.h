@@ -27,13 +27,26 @@ class Relation {
             return out.str();
         }
 
-        Relation select(int index, const std::string& value) const {
+        Relation select(int index, const std::string& attribute) const {
             Relation result(name, scheme);
             for (auto& tuple : tuples) {
                 if (tuple[index] == value) {
                     result.addTuple(tuple);
                 }
             }
+            return result;
+        }
+
+        Relation project(Relation current, const std::string& value) const{
+            Relation result(name, scheme);
+            for (auto& currScheme : scheme) {
+
+            }
+            return result;
+        }
+
+        Relation rename(Relation current, const std::string& value) const {
+            Relation result();
             return result;
         }
 }; 

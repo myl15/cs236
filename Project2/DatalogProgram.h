@@ -128,6 +128,15 @@ class DatalogProgram {
 			}
 			domains = createDomain(facts);
 		}
+
+		vector<predicate> getSchemes() {
+			return this->schemes;
+		}
+
+		vector<predicate> getFacts() {
+			return this->facts;
+		}
+
 		string toString() {
 			stringstream out;
 			out << "Success!" << endl;
