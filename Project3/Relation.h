@@ -5,6 +5,7 @@
 #include "Scheme.h"
 #include "Tuple.h"
 
+using namespace std;
 class Relation {
 
     private:
@@ -27,7 +28,7 @@ class Relation {
             return out.str();
         }
 
-        Relation select(int index, const std::string& attribute) const {
+        Relation select(int index, const std::string& value) const {
             Relation result(name, scheme);
             for (auto& tuple : tuples) {
                 if (tuple[index] == value) {
@@ -37,16 +38,20 @@ class Relation {
             return result;
         }
 
-        Relation project(Relation current, const std::string& value) const{
-            Relation result(name, scheme);
-            for (auto& currScheme : scheme) {
+        // Relation project(Relation current, const std::string& value) const{
+        //     Relation result(name, scheme);
+        //     for (auto& currScheme : scheme) {
 
-            }
-            return result;
-        }
+        //     }
+        //     return result;
+        // }
 
-        Relation rename(Relation current, const std::string& value) const {
-            Relation result();
-            return result;
-        }
+        // Relation rename(Relation current, const std::string& value) const {
+        //     Relation result();
+        //     return result;
+        // }
+
+		std::string getName() {
+			return this->name;
+		}
 }; 

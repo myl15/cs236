@@ -3,7 +3,7 @@
 #include <vector>
 #include <sstream>
 #include "Scheme.h"
-
+using namespace std;
 class Tuple : public std::vector<std::string> {
 
     public:

@@ -1,6 +1,9 @@
 #include "Scheme.h"
 #include "Tuple.h"
 #include "Relation.h"
+#include "Database.h"
+#include "Interpreter.h"
+
 #include <string>
 #include <vector>
 #include <iostream>

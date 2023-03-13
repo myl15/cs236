@@ -12,6 +12,7 @@
 #include <set>
 #include "Parser.h"
 
+using namespace std;
 class DatalogProgram {
 	private:
 		unsigned int index = 0;
