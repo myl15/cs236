@@ -80,7 +80,7 @@ class Parser {
 			DatalogProgram dp2(parsedTokens);
 			this->dp = dp2;
 			//cout << "tostring" << endl;
-			cout << dp.toString();
+			//cout << dp.toString();       HERE IS IMPORTANT TOSTRING
 		}
 
 		DatalogProgram getDp() {

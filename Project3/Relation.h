@@ -2,6 +2,7 @@
 #include <string>
 #include <set>
 #include <sstream>
+#include <vector>
 #include "Scheme.h"
 #include "Tuple.h"
 
@@ -15,6 +16,7 @@ class Relation {
         std::set<Tuple> tuples;
 
     public:
+        Relation() { }
         Relation(const std::string& name, const Scheme& scheme) : name(name), scheme(scheme) { }
 
         void addTuple(const Tuple& tuple) {
@@ -28,7 +30,7 @@ class Relation {
             return out.str();
         }
 
-        Relation select(int index, const std::string& value) const {
+        Relation selectOne(int index, const std::string& value) const {
             Relation result(name, scheme);
             for (auto& tuple : tuples) {
                 if (tuple[index] == value) {
@@ -38,20 +40,50 @@ class Relation {
             return result;
         }
 
-        // Relation project(Relation current, const std::string& value) const{
-        //     Relation result(name, scheme);
-        //     for (auto& currScheme : scheme) {
+        Relation selectTwo(int index1, int index2) const {
+            Relation result(name, scheme);
+            for (auto& tuple : tuples) {
+                if (tuple[index1] == tuple[index2]) {
+                    result.addTuple(tuple);
+                }
+            }
+            return result;
+        }
 
-        //     }
-        //     return result;
-        // }
+        Relation project(map<string, int> Queries, vector<string> vars_order) const{
+            
+            Relation result(name, scheme);
 
-        // Relation rename(Relation current, const std::string& value) const {
-        //     Relation result();
-        //     return result;
-        // }
+            for (auto& tuple : tuples) {
+                vector<string> projectedTuple;
+                vector<string> tuple_values;
+                for (unsigned int i = 0; i < vars_order.size(); i++) {
+                    int index = Queries.at(vars_order.at(i));
+                    projectedTuple.push_back(tuple[index]);
+                }
+                result.addTuple(projectedTuple);
+            }     
+            
+            return result;
+        }
+
+        Relation rename(Relation rel, vector<string> order) const {  
+            Scheme newScheme(order);
+            Relation result = rel;
+            result.scheme = newScheme;
+            //result.addTuple();
+            return result;
+        }
 
 		std::string getName() {
 			return this->name;
 		}
+
+        set<Tuple> getTuples() {
+            return this->tuples;
+        }
+
+        int getTupleSize() {
+            return tuples.size();
+        }
 }; 

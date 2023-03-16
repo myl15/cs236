@@ -10,10 +10,11 @@
 #include "Rule.h"
 #include "Parameter.h"
 #include <set>
-#include "Parser.h"
+
 
 using namespace std;
 class DatalogProgram {
+	friend class Parser;
 	private:
 		unsigned int index = 0;
 		vector<predicate> schemes;
@@ -139,6 +140,9 @@ class DatalogProgram {
 			return this->facts;
 		}
 
+		vector<predicate> getQueries() {
+			return this->queries;
+		}
 		
 
 		string toString() {

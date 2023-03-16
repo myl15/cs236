@@ -25,7 +25,9 @@ class predicate {
 			}
 			return result;
 		}
-
+		vector<parameter> getParameters() {
+			return this->parameters;
+		}
 		bool getIsID(int index) {
 			return parameters.at(index).getIsID();
 		}

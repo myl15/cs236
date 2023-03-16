@@ -3,6 +3,7 @@
 #include <vector>
 #include <sstream>
 #include "Scheme.h"
+
 using namespace std;
 class Tuple : public std::vector<std::string> {
 
@@ -12,9 +13,17 @@ class Tuple : public std::vector<std::string> {
         std::string toString(const Scheme& scheme) const {
             const Tuple& tuple = *this;
             std::stringstream out;
-            out << scheme.at(0) + "=" + tuple.at(0) + " , ";
-            out << scheme.at(1) + "=" + tuple.at(1) + " , ";
-            out << scheme.at(2) + "=" + tuple.at(2) + "";
+            for (unsigned int i = 0; i < scheme.size(); i++) {
+        
+                if (i == scheme.size() - 1) {
+                    out << scheme.at(i) + "=" + tuple.at(i) + "";
+                }
+                else {
+                    out << scheme.at(i) + "=" + tuple.at(i) + " , ";
+                }
+                
+            }
+            
             return out.str();
         }
 };

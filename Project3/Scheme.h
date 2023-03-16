@@ -5,6 +5,7 @@ using namespace std;
 class Scheme : public std::vector<std::string> {
     
     public:
+        Scheme() { }
         Scheme(std::vector<std::string> names) : std::vector<std::string>(names) { }
 
 };
