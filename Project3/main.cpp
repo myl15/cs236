@@ -15,8 +15,8 @@ void CommentAndStringCheck(string& inputLine, ifstream& input, int& line, int& t
 string GetRidOfWhitespace(string& inputLine);
 
 int main(int argc, char* argv[]) {
-	string filename = argv[1];
-	
+	//string filename = argv[1];
+	string filename = "G:/Other computers/Sexy Desktop/repos/CS236-FinalProject/CS236-FinalProject/project3-tests/project3-tests/in30.txt";
 	ifstream input(filename);
 	if (!input.is_open()) {
 		std::cout << "Error opening file";

@@ -33,7 +33,7 @@ class Interpreter {
             /*for (auto& query : dp.getQueries()) {
                 evaluateQuery(query);
             }*/
-            db.printDatabase();
+            //db.printDatabase();
 
         }
         void evaluateAllQueries(vector<predicate> Queries) {
@@ -45,7 +45,7 @@ class Interpreter {
                 for (unsigned int j = 0; j < query.size(); j++) {
                     cout << query.at(j);
                     if (j < query.size() - 1) cout << ',';
-                    else cout << ")?";
+                    else cout << ")? ";
                 }
                 solvedQueries.push_back(evaluateQuery(Queries.at(i)));
             }
@@ -92,7 +92,7 @@ class Interpreter {
             //cout << queryRelation.toString() << endl << endl;
 
             queryRelation = queryRelation.rename(queryRelation, nonAlphaQueries);
-            //cout << queryRelation.toString() << endl << endl;
+            cout << queryRelation.toString() << endl;
 
             return queryRelation;
         }

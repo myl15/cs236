@@ -26,9 +26,9 @@ class Database {
 			return relations.size();
 		}
 
-		void printDatabase() {
+		/*void printDatabase() {
 			for (auto it = relations.cbegin(); it != relations.cend(); ++it) {
-				std::cout << "  " << it->second.toString() << " ";
+				std::cout << it->second.toString() << " ";
 			}
-		}
+		} */
 };

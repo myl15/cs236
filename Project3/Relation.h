@@ -23,6 +23,9 @@ class Relation {
             tuples.insert(tuple);
         }
 
+        void setScheme(Scheme newScheme) {
+            this->scheme = newScheme;
+        }
         std::string toString() const {
             std::stringstream out;
             for (auto& tuple : tuples)
@@ -70,7 +73,7 @@ class Relation {
         Relation rename(Relation rel, vector<string> order) const {  
             Scheme newScheme(order);
             Relation result = rel;
-            result.scheme = newScheme;
+            result.setScheme(newScheme);
             //result.addTuple();
             return result;
         }
